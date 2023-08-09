@@ -8,7 +8,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from adminplatform.init_base import Base
+from moviematchr.init_base import Base
 
 
 load_dotenv()

@@ -2,8 +2,8 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from adminplatform.schemas.account.user import Type2FA
-from adminplatform.schemas.licences.licences import TypeLicenceEnum
+from moviematchr.schemas.account.user import Type2FA
+from moviematchr.schemas.licences.licences import TypeLicenceEnum
 
 from tests.conftest import (
     ACCESS_TOKEN_ADMIN,
@@ -35,25 +35,25 @@ async def test_get_order_about_from_admin(client: AsyncClient, session: AsyncSes
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.DOCTOR.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd1",
-                    "email": "test_adminplatform_doctor1@test.com",
-                    "firstname": "test_adminplatform_doctor1_firstname",
-                    "lastname": "test_adminplatform_doctor1_lastname",
+                    "email": "test_moviematchr_doctor1@test.com",
+                    "firstname": "test_moviematchr_doctor1_firstname",
+                    "lastname": "test_moviematchr_doctor1_lastname",
                 },
                 {
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.DOCTOR.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd2",
-                    "email": "test_adminplatform_doctor2@test.com",
-                    "firstname": "test_adminplatform_doctor2_firstname",
-                    "lastname": "test_adminplatform_doctor2_lastname",
+                    "email": "test_moviematchr_doctor2@test.com",
+                    "firstname": "test_moviematchr_doctor2_firstname",
+                    "lastname": "test_moviematchr_doctor2_lastname",
                 },
                 {
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.MEDICAL_STAFF.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd4",
-                    "email": "test_adminplatform_medicalstaff1@test.com",
-                    "firstname": "test_adminplatform_medicalstaff1_firstname",
-                    "lastname": "test_adminplatform_medicalstaff1_lastname",
+                    "email": "test_moviematchr_medicalstaff1@test.com",
+                    "firstname": "test_moviematchr_medicalstaff1_firstname",
+                    "lastname": "test_moviematchr_medicalstaff1_lastname",
                 },
             ],
             "seller": {
@@ -81,25 +81,25 @@ async def test_get_order_about_from_admin(client: AsyncClient, session: AsyncSes
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.DOCTOR.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd3",
-                    "email": "test_adminplatform_doctor3@test.com",
-                    "firstname": "test_adminplatform_doctor3_firstname",
-                    "lastname": "test_adminplatform_doctor3_lastname",
+                    "email": "test_moviematchr_doctor3@test.com",
+                    "firstname": "test_moviematchr_doctor3_firstname",
+                    "lastname": "test_moviematchr_doctor3_lastname",
                 },
                 {
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.MEDICAL_STAFF.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd5",
-                    "email": "test_adminplatform_medicalstaff2@test.com",
-                    "firstname": "test_adminplatform_medicalstaff2_firstname",
-                    "lastname": "test_adminplatform_medicalstaff2_lastname",
+                    "email": "test_moviematchr_medicalstaff2@test.com",
+                    "firstname": "test_moviematchr_medicalstaff2_firstname",
+                    "lastname": "test_moviematchr_medicalstaff2_lastname",
                 },
                 {
                     "type_2fa": Type2FA.EMAIL.value,
                     "licence_type": TypeLicenceEnum.MEDICAL_STAFF.value,
                     "id_licence": "e227d564-3238-473c-aff7-630bdcd6cfd6",
-                    "email": "test_adminplatform_medicalstaff3@test.com",
-                    "firstname": "test_adminplatform_medicalstaff3_firstname",
-                    "lastname": "test_adminplatform_medicalstaff3_lastname",
+                    "email": "test_moviematchr_medicalstaff3@test.com",
+                    "firstname": "test_moviematchr_medicalstaff3_firstname",
+                    "lastname": "test_moviematchr_medicalstaff3_lastname",
                 },
             ],
             "seller": {

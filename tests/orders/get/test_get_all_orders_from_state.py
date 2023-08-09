@@ -2,7 +2,7 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from adminplatform.schemas.orders.orders import StateOrderEnum
+from moviematchr.schemas.orders.orders import StateOrderEnum
 
 from tests.conftest import (
     ACCESS_TOKEN_ADMIN,

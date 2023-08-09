@@ -9,21 +9,21 @@ from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
-from adminplatform.init_base import Base
-from adminplatform import app
+from moviematchr.init_base import Base
+from moviematchr import app
 
-from adminplatform.schemas.tickets.tickets import Tickets, StateTicketEnum, TypeTicketEnum
-from adminplatform.schemas.orders.orders import Orders, StateOrderEnum
-from adminplatform.schemas.sellers.sellers import Sellers
-from adminplatform.schemas.licences.licences import Licences, TypeLicenceEnum
-from adminplatform.schemas.account.user import Type2FA
+from moviematchr.schemas.tickets.tickets import Tickets, StateTicketEnum, TypeTicketEnum
+from moviematchr.schemas.orders.orders import Orders, StateOrderEnum
+from moviematchr.schemas.sellers.sellers import Sellers
+from moviematchr.schemas.licences.licences import Licences, TypeLicenceEnum
+from moviematchr.schemas.account.user import Type2FA
 
-from adminplatform.services.tickets import create_ticket_dal
-from adminplatform.services.orders import create_order_dal
-from adminplatform.services.sellers import create_seller_dal
-from adminplatform.services.licences import create_licence_dal
+from moviematchr.services.tickets import create_ticket_dal
+from moviematchr.services.orders import create_order_dal
+from moviematchr.services.sellers import create_seller_dal
+from moviematchr.services.licences import create_licence_dal
 
-from adminplatform.utils.utils import init_bdd
+from moviematchr.utils.utils import init_bdd
 
 load_dotenv()
 

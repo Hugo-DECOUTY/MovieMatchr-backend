@@ -3,8 +3,8 @@ import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 from dotenv import load_dotenv
 from typing import Sequence
-from adminplatform.services.orders import get_orders_from_local_admin_dal
-from adminplatform.schemas.orders.orders import Orders
+from moviematchr.services.orders import get_orders_from_local_admin_dal
+from moviematchr.schemas.orders.orders import Orders
 
 from tests.conftest import (
     UUID_LOCAL_ADMIN,

@@ -3,12 +3,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from dotenv import load_dotenv
 import pytest
 
-from adminplatform.schemas.licences.licences import TypeLicenceEnum
-from adminplatform.schemas.tickets.tickets import TypeTicketEnum
+from moviematchr.schemas.licences.licences import TypeLicenceEnum
+from moviematchr.schemas.tickets.tickets import TypeTicketEnum
 
-from adminplatform.schemas.account.user import Type2FA
+from moviematchr.schemas.account.user import Type2FA
 
-from adminplatform.enum.errors.HttpErrorsEnum import HttpErrorsEnum
+from moviematchr.enum.errors.HttpErrorsEnum import HttpErrorsEnum
 
 from tests.conftest import (
     ACCESS_TOKEN_ADMIN,
@@ -271,8 +271,8 @@ async def test_post_ticket_from_local_admin(client: AsyncClient, session: AsyncS
             "body": {
                 "firstname": "TestTicket1",
                 "lastname": "Test",
-                "email": "test_adminplatform_doctor1_error@test.com",
-                "new_email": "test_adminplatform_doctor1@test.com",
+                "email": "test_moviematchr_doctor1_error@test.com",
+                "new_email": "test_moviematchr_doctor1@test.com",
             }
         },
     )
@@ -298,8 +298,8 @@ async def test_post_ticket_from_unknown_user_forbidden(client: AsyncClient, sess
             "body": {
                 "firstname": "TestTicket1",
                 "lastname": "Test",
-                "email": "test_adminplatform_doctor1@test.com",
-                "new_email": "test_adminplatform_doctor1@test.com",
+                "email": "test_moviematchr_doctor1@test.com",
+                "new_email": "test_moviematchr_doctor1@test.com",
             }
         },
     )
@@ -315,8 +315,8 @@ async def test_post_ticket_from_unknown_user_forbidden(client: AsyncClient, sess
             "body": {
                 "firstname": "TestTicket1",
                 "lastname": "Test",
-                "email": "test_adminplatform_doctor1@test.com",
-                "new_email": "test_adminplatform_doctor1@test.com",
+                "email": "test_moviematchr_doctor1@test.com",
+                "new_email": "test_moviematchr_doctor1@test.com",
             }
         },
     )

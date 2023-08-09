@@ -2,10 +2,10 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from adminplatform.schemas.tickets.tickets import TypeTicketEnum, StateTicketEnum
-from adminplatform.schemas.account.user import Type2FA
+from moviematchr.schemas.tickets.tickets import TypeTicketEnum, StateTicketEnum
+from moviematchr.schemas.account.user import Type2FA
 
-from adminplatform.enum.errors.HttpErrorsEnum import HttpErrorsEnum
+from moviematchr.enum.errors.HttpErrorsEnum import HttpErrorsEnum
 
 from tests.conftest import (
     ACCESS_TOKEN_ADMIN,

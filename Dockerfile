@@ -26,8 +26,8 @@ RUN curl -sSL https://install.python-poetry.org | python3 - \
     && poetry config virtualenvs.in-project true;
 
 # Fake folders for install
-RUN mkdir -p src/adminplatform
-RUN touch src/adminplatform/__init__.py
+RUN mkdir -p src/moviematchr
+RUN touch src/moviematchr/__init__.py
 RUN mkdir -p scripts
 RUN touch scripts/__init__.py
 
