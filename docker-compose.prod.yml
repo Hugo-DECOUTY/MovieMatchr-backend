@@ -1,0 +1,26 @@
+name: "movie-matchr-prod"
+
+services:
+  minio:
+    image: quay.io/minio/minio:RELEASE.2023-06-16T02-41-06Z
+    # ports:
+    # Already opened
+    # - 9000
+    volumes:
+      - ./volumes/movie-matchr-minio:/data
+    env_file:
+      - .env
+
+  db:
+    volumes:
+      - ./volumes/movie-matchr-mariadb:/var/lib/mysql
+
+  app:
+    networks:
+      kong-network:
+
+
+networks:
+  kong-network:
+    name: kong-network
+    external: true

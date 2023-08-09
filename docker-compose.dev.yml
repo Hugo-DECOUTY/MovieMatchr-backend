@@ -1,0 +1,65 @@
+version: "3.9"
+name: "movie-matchr-dev"
+
+networks:
+  admin-platform-network:
+    external: true
+  
+services:
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - '3306:3306'
+    networks:
+      - movie-matchr-network
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_USER: user
+      MYSQL_DATABASE: movie-matchr
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    env_file:
+      - .env
+    volumes:
+      - db_data_admin_platform:/var/lib/mysql
+
+  db_test:
+    image: mariadb
+    restart: always
+    ports:
+      - '3308:3306'
+    networks:
+      - movie-matchr-network
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_USER: user
+      MYSQL_DATABASE: movie-matchr-test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    env_file:
+      - .env
+    volumes:
+      - db_data_test_admin_platform:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - '8080:8080'
+    networks:
+      - movie-matchr-network
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - db_test
+    volumes:
+      - ./alembic:/usr/src/app/alembic # Montage du répertoire local 'alembic' vers le répertoire 'alembic' dans le conteneur
+      - ./src:/usr/src/app/src # Montage du répertoire local 'src' vers le répertoire 'src' dans le conteneur
+      - ./scripts:/usr/src/app/scripts # Montage du répertoire local 'scripts' vers le répertoire 'scripts' dans le conteneur
+      - ./tests:/usr/src/app/tests # Montage du répertoire local 'tests' vers le répertoire 'tests' dans le conteneur
+
+
+volumes:
+  db_data_movie_matchr:
+  db_data_test_movie_matchr:

@@ -1,0 +1,184 @@
+import pytest
+from httpx import AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from adminplatform.schemas.tickets.tickets import TypeTicketEnum, StateTicketEnum
+from adminplatform.schemas.account.user import Type2FA
+
+from tests.conftest import (
+    ACCESS_TOKEN_ADMIN,
+    ACCESS_TOKEN_LOCAL_ADMIN,
+    ACCESS_TOKEN_UNKNOWN_USER,
+    UUID_ADMIN,
+    UUID_LOCAL_ADMIN,
+    UUID_ORDER_1,
+    UUID_TICKET_1,
+    UUID_TICKET_2,
+    UUID_TICKET_3,
+    UUID_TICKET_4,
+    pre_fill_db,
+)
+
+@pytest.mark.asyncio
+async def test_get_all_tickets_from_admin(client: AsyncClient, session: AsyncSession) -> None:
+    await pre_fill_db(session)
+    response = await client.get(
+            "/tickets",
+            headers={"X-USERINFO": ACCESS_TOKEN_ADMIN}
+        )
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "id": UUID_TICKET_1,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_LOCAL_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        },
+        {
+            "id": UUID_TICKET_2,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        },
+        {
+            "id": UUID_TICKET_3,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_LOCAL_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        },
+        {
+            "id": UUID_TICKET_4,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        }
+    ]
+
+@pytest.mark.asyncio
+async def test_get_all_tickets_from_local_admin(client: AsyncClient, session: AsyncSession) -> None:
+    await pre_fill_db(session)
+    response = await client.get(
+            "/tickets",
+            headers={"X-USERINFO": ACCESS_TOKEN_LOCAL_ADMIN}
+        )
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "id": UUID_TICKET_1,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_LOCAL_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        },
+        {
+            "id": UUID_TICKET_3,
+            "id_order": UUID_ORDER_1,
+            "order_id": "#0000000001",
+            "workplace": "Gotham",
+            "service": "Cardiologie",
+            "user": UUID_LOCAL_ADMIN,
+            "type": TypeTicketEnum.MODIFY_USER.value,
+            "sending_date": 1666870958,
+            "body": {
+                "id": None,
+                "type_2fa": Type2FA.EMAIL.value,
+                "email": "sjeanpro28@gmail.com",
+                "new_email": "sjeanpro28@gmail.com",
+                "firstname": "Samuel_Test",
+                "lastname": "Jean_Test",
+                "serial_number": None,
+                "licence_type": None,
+            },
+            "state_flag": StateTicketEnum.IN_PROGRESS.value,
+            "update_state_date": None,
+        }
+    ]
+
+@pytest.mark.asyncio
+async def test_get_all_tickets_from_unknown_user_forbidden(client: AsyncClient, session: AsyncSession) -> None:
+    await pre_fill_db(session)
+    response = await client.get(
+            "/tickets",
+            headers={"X-USERINFO": ACCESS_TOKEN_UNKNOWN_USER}
+        )
+    assert response.status_code == 403
+    assert response.json() == {"detail": "Forbidden"}

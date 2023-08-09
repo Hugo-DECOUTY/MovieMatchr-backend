@@ -1,0 +1,23 @@
+name: "movie-matchr"
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    # ports:
+    # Already opened
+    # - 3306
+    env_file:
+      - .env
+
+  app:
+    build: .
+    # port:
+    # Already opened
+    # - 8080
+    networks:
+      default:
+    env_file:
+      - .env
+    depends_on:
+      - db

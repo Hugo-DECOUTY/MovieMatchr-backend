@@ -1,0 +1,12 @@
+## Initializing Alembic
+poetry run alembic init alembic
+
+## Creating a Migration Script
+poetry run alembic revision --autogenerate
+-m "name of migration"
+
+## Batch Operations
+poetry run alembic downgrade -1
+
+## Migrate
+poetry run alembic upgrade head
